@@ -5,23 +5,23 @@ import (
 	"time"
 )
 
-func task(id int){
-	for i:=0;i<5;i++ {
-		fmt.Printf("%d.--%d\n",id,i)
+func task(id int) {
+	for i := 0; i < 5; i++ {
+		fmt.Printf("%d.--%d\n", id, i)
 		time.Sleep(time.Second)
 	}
 }
 
-func comuser(data chan int,done chan bool){
+func comuser(data chan int, done chan bool) {
 	for x := range data {
-		println("recv:",x)
+		println("recv:", x)
 	}
 
 	done <- true
 }
 
-func producer(data chan int){
-	for i:=0; i<4; i++ {
+func producer(data chan int) {
+	for i := 0; i < 4; i++ {
 		data <- i
 	}
 	close(data)
@@ -36,7 +36,7 @@ func main() {
 	data := make(chan int)
 	done := make(chan bool)
 
-	go comuser(data,done)
+	go comuser(data, done)
 	go producer(data)
 
 	<-done
