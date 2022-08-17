@@ -2,9 +2,9 @@ package main
 
 import "fmt"
 
-type user struct{
+type user struct {
 	name string
-	age byte
+	age  byte
 }
 
 type manager struct {
